@@ -1,2 +1,28 @@
-<h1>Todos#index</h1>
-<p>Find me in app/views/todos/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  
+</head>
+<body>
+  <div id="myDIV" class="header">
+    <h2>To Do List</h2>
+    <%= form_with(model: @todo, local: false) do |form| %>
+      <%= form.text_field :title, placeholder: 'Digite sua tarefa...', id: 'myInput' %>
+      <%= form.submit 'Inserir', class: 'addBtn' %>
+    <% end %>
+  </div>
+
+  <ul id="myUL">
+    <% @todos.each do |todo| %>
+      <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
+        <%= todo.title %>
+        <span class="close" data-id="<%= todo.id %>">×</span>
+      </li>
+    <% end %>
+  </ul>
+</body>
+</html>

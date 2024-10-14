@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  get 'todos/index'
+  root 'todos#index'
+  resources :todos, only: [:create, :destroy, :update]
 
 end
