@@ -1,9 +1,12 @@
 class TodosController < ApplicationController
   before_action :set_task, only: [:update, :destroy]
 
+  #Função responsável por carregar todos os dados do bando de dados
   def index
     @todos = Todo.all
   end
+
+  # Função responsável por criar uma nova tarefa (Todo), respondendo a diferentes formatos de requisição (HTML, JSON).
 
   def create
     @todo = Todo.new(todo_params)
@@ -18,20 +21,22 @@ class TodosController < ApplicationController
     end
   end
 
+  # Função responsável por atualizar uma tarefa específica
   def update
-    if @todo.update(completed: todo_params[:completed])
-      redirect_to todo_path, notice "Todo foi alterado com sucesso"
-    else 
+    if @todo.update(todo_params)
+      redirect_to todo_path, notice: "Todo foi alterado com sucesso."
+    else
       @todos = Todo.all
       render :index
     end
   end
 
+ # Função responsável por deletar uma tarefa específica 
   def destroy
     @todo.destroy
     respond_to do |format|
-      format.html {redirect_to todo_path, notice: "Todo destruido com sucesso"}
-      format.json {head :no_content}
+      format.html { redirect_to todo_path, notice: "Todo destruído com sucesso." }
+      format.json { head :no_content }
     end
   end
 
@@ -44,5 +49,5 @@ class TodosController < ApplicationController
   def todo_params
     params.require(:todo).permit(:title, :completed)
   end
-  
+
 end
