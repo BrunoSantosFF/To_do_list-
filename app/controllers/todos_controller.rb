@@ -16,4 +16,33 @@ class TodosController < ApplicationController
       @todos = Todo.all
       render :index 
     end
+  end
+
+  def update
+    if @todo.update(completed: todo_params[:completed])
+      redirect_to todo_path, notice "Todo foi alterado com sucesso"
+    else 
+      @todos = Todo.all
+      render :index
+    end
+  end
+
+  def destroy
+    @todo.destroy
+    respond_to do |format|
+      format.html {redirect_to todo_path, notice: "Todo destruido com sucesso"}
+      format.json {head :no_content}
+    end
+  end
+
+  private
+
+  def set_task
+    @todo = Todo.find(params[:id])
+  end
+
+  def todo_params
+    params.require(:todo).permit(:title, :completed)
+  end
+  
 end
