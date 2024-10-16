@@ -9,21 +9,23 @@
 
 </head>
 <body>
-  <div id="myDIV" class="header">
-    <h2>To Do List</h2>
-    <%= form_with(model: @todo, local: false) do |form| %>
-      <%= form.text_field :title, placeholder: 'Digite sua tarefa...', id: 'myInput' %>
-      <%= form.submit 'Inserir', class: 'addBtn' %>
-    <% end %>
-  </div>
+  <div class="container_main">
+    <div id="myDIV" class="header">
+      <h2>To Do List</h2>
+      <%= form_with(model: @todo, local: false) do |form| %>
+        <%= form.text_field :title, placeholder: 'Digite sua tarefa...', id: 'myInput' %>
+        <%= form.submit 'Inserir', class: 'addBtn' %>
+      <% end %>
+    </div>
 
-  <ul id="myUL">
-    <% @todos.each do |todo| %>
-      <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
-        <%= todo.title %>
-        <span class="close" data-id="<%= todo.id %>">×</span>
-      </li>
-    <% end %>
-  </ul>
+    <ul id="myUL">
+      <% @todos.each do |todo| %>
+        <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
+          <%= todo.title %>
+          <span class="close" data-id="<%= todo.id %>">×</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </body>
 </html>

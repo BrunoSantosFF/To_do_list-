@@ -1,3 +1,11 @@
+/* Container principal do to do */
+.container_main {
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  text-align: center; 
+}
+
 /* Inclui o padding e a borda no cálculo da largura e altura total de um elemento */
 * {
   box-sizing: border-box;
@@ -17,7 +25,7 @@ ul li {
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
-  user-select: none; /* torna os itens da lista não selecionáveis */
+  user-select: none; 
 }
 
 /* Define uma cor diferente para os itens ímpares da lista (efeito zebra) */
