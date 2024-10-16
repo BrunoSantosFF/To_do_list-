@@ -18,3 +18,13 @@ criando Controlador:
 rails generate controller Todos index
 
 ```
+
+Para poder usar o JS foi feita a instalação de "importmap-rails": 
+
+adicione gem *'importmap-rails'* no arquivo **Gemfile** 
+
+instalar Importmap:
+
+```
+bin/rails importmap:install
+```
