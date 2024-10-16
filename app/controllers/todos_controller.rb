@@ -35,10 +35,7 @@ class TodosController < ApplicationController
  # Função responsável por deletar uma tarefa específica 
   def destroy
     @todo.destroy
-    respond_to do |format|
-      format.html { redirect_to todos_path, notice: "Todo destruído com sucesso." }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private

@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
     button.addEventListener("click", function(event) {
       event.stopPropagation(); // Impede a chamada do evento do item da lista
       var todoId = this.getAttribute("data-id");
+      console.log(todoId);
+      
 
       fetch(`/todos/${todoId}`, {
         method: 'DELETE',
