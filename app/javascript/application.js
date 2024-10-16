@@ -51,7 +51,11 @@ function removeTodo(event) {
     }
   }).then(response => {
     if (response.ok) {
-      this.parentElement.remove();
+      this.parentElement.classList.add("fade-out");
+      setTimeout(() => {
+        this.parentElement.remove();
+      }, 1000); // Tempo igual ao da transição CSS
+
     }
   }).catch(error => {
     console.error('Erro ao remover todo:', error);
