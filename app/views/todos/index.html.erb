@@ -18,6 +18,7 @@
       <% end %>
     </div>
 
+    <div class="scrollable-list">
     <ul id="myUL">
       <% @todos.each do |todo| %>
         <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
@@ -26,6 +27,7 @@
         </li>
       <% end %>
     </ul>
+    </div>
   </div>
 </body>
 </html>

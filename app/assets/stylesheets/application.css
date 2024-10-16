@@ -1,9 +1,11 @@
 /* Container principal do to do */
 .container_main {
   max-width: 600px; 
+  max-height: 800px;
   margin: 0 auto; 
   padding: 20px; 
   text-align: center; 
+  border: 3px solid;
 }
 
 /* Inclui o padding e a borda no cálculo da largura e altura total de um elemento */
@@ -26,6 +28,7 @@ ul li {
   font-size: 18px;
   transition: 0.2s;
   user-select: none; 
+  list-style-type: none;
 }
 
 /* Define uma cor diferente para os itens ímpares da lista (efeito zebra) */
@@ -116,6 +119,14 @@ input {
   background-color: #bbb;
 }
 
+.scrollable-list {
+  max-height: 400px; 
+  overflow-y: auto;
+  border: 1px solid #cccccc; 
+  padding: 10px; 
+  margin-top: 10px; 
+  margin-bottom: 10px;
+}
 
 .fade-out {
   transition: opacity 0.7s ease-out; 
