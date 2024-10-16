@@ -1,48 +1,58 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Add event listener to list items for toggling completion
-  var listItems = document.querySelectorAll("ul li");
-  listItems.forEach(function(item) {
-    item.addEventListener("click", function() {
-      var todoId = this.getAttribute("data-id");
-      console.log(todoId);
-      
-      var completed = this.classList.toggle("checked");
 
-      fetch(`/todos/${todoId}`, {
-        method: 'PATCH',
-        headers: {
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ todo: { completed: completed } })
-      }).then(function(response) {
-        if (!response.ok) {
-          console.error("Error updating todo");
-        }
-      });
-    });
-  });
+//Executar a função quando o documento HTML for completamente carregado
+document.addEventListener("DOMContentLoaded", () => {
+  //Criando uma lista com todos itens da lista (Li)
+  const listItems = document.querySelectorAll("ul li");
 
-  // Add event listener to close buttons to remove tasks
-  var closeButtons = document.querySelectorAll(".close");
-  closeButtons.forEach(function(button) {
-    button.addEventListener("click", function(event) {
-      event.stopPropagation(); // Impede a chamada do evento do item da lista
-      var todoId = this.getAttribute("data-id");
-      console.log(todoId);
-      
+  //Fazendo interação de click para cada item da lista  
+  // listItems.forEach(item => {
+  //   item.addEventListener("click", toggleCompletion);
+  // });
 
-      fetch(`/todos/${todoId}`, {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }).then(function(response) {
-        if (response.ok) {
-          // Remove the item da lista
-          button.parentElement.remove();
-        }
-      });
-    });
+  const closeButtons = document.querySelectorAll(".close");
+  closeButtons.forEach(button => {
+    button.addEventListener("click", removeTodo);
   });
 });
+
+//Função responsável por atualizar os valores de cata item
+//Está com erro
+// function toggleCompletion(event) {
+//   const todoId = this.getAttribute("data-id");
+//   const completed = this.classList.toggle("checked");
+//   updateTodo(todoId, completed);
+// }
+
+
+// function updateTodo(todoId, completed) {
+//   fetch(`/todos/${todoId}`, {
+//     method: 'PATCH',
+//     headers: {
+//       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ todo: { completed: completed } })
+//   }).then(response => {
+//     if (!response.ok) {
+//       alert("Erro ao atualizar a tarefa. Tente novamente.");
+//     }
+//   });
+// }
+
+function removeTodo(event) {
+  event.stopPropagation(); 
+  const todoId = this.getAttribute("data-id");
+  
+  
+  fetch(`/todos/${todoId}`, {
+    method: 'DELETE',
+    headers: {
+      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+  }).then(response => {
+    if (response.ok) {
+      this.parentElement.remove();
+    }
+  });
+  
+}
