@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
 //   });
 // }
 
+//Função para Remover o item da lista
 function removeTodo(event) {
   event.stopPropagation(); 
   const todoId = this.getAttribute("data-id");
-  
   
   fetch(`/todos/${todoId}`, {
     method: 'DELETE',
@@ -53,6 +53,8 @@ function removeTodo(event) {
     if (response.ok) {
       this.parentElement.remove();
     }
+  }).catch(error => {
+    console.error('Erro ao remover todo:', error);
   });
   
 }
