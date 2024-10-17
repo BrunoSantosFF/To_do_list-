@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // }
 
 //Função para Remover o item da lista
-function removeTodo(event) {
+function removeTodo(event,listItems) {
   event.stopPropagation(); 
   const todoId = this.getAttribute("data-id");
   
@@ -54,11 +54,27 @@ function removeTodo(event) {
       this.parentElement.classList.add("fade-out");
       setTimeout(() => {
         this.parentElement.remove();
-      }, 1000); // Tempo igual ao da transição CSS
-
+        emptyList();
+      }, 1000); 
     }
   }).catch(error => {
     console.error('Erro ao remover todo:', error);
   });
   
+}
+
+//Verifica se a lista está vazia
+function emptyList(){
+  const listItems = document.querySelectorAll("ul li");
+  const emptyMessage = document.getElementById("empty_menssage");
+
+  if (listItems.length === 0){
+    if(!emptyMessage){
+      const message = document.createElement("p");
+      message.id = "empty_menssage";
+      message.textContent = "Lista vazia, insira uma tarefa.";
+      document.querySelector("ul").appendChild(message);
+    }
+    
+  }
 }
