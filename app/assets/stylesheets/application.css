@@ -81,6 +81,7 @@ ul li.checked::before {
   padding: 30px 40px;
   color: white;
   text-align: center;
+  border-radius: 3px;
 }
 
 /* Limpa os floats após o cabeçalho */

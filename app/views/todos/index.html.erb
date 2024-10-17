@@ -20,11 +20,15 @@
 
     <div class="scrollable-list">
     <ul id="myUL">
-      <% @todos.each do |todo| %>
-        <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
-          <%= todo.title %>
-          <span class="close" data-id="<%= todo.id %>">×</span>
-        </li>
+      <% if @todos.any? %>
+        <% @todos.each do |todo| %>
+          <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
+            <%= todo.title %>
+            <span class="close" data-id="<%= todo.id %>">×</span>
+          </li>
+        <% end %>
+      <% else %>
+        <p>Lista vazia, insira uma tarefa.</p>
       <% end %>
     </ul>
     </div>
