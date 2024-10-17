@@ -1,10 +1,14 @@
 class TodosController < ApplicationController
-  before_action :set_task, only: [:update, :destroy]
+  before_action :set_task, only: [:update, :destroy, :edit]
 
   #Função responsável por carregar todos os dados do bando de dados
   def index
     @todos = Todo.all
     @todo = Todo.new # Instancia para o formulário de nova tarefa
+  end
+
+  # Função para editar o item
+  def edit
   end
 
   # Função responsável por criar uma nova tarefa (Todo), respondendo a diferentes formatos de requisição (HTML, JSON).
@@ -25,10 +29,9 @@ class TodosController < ApplicationController
   # Função responsável por atualizar uma tarefa específica
   def update
     if @todo.update(todo_params)
-      redirect_to todos_path, notice: "Todo foi alterado com sucesso."
+      redirect_to edit_todo_path, notice: "Todo foi alterado com sucesso."
     else
-      @todos = Todo.all
-      render :index
+      render :edit
     end
   end
 

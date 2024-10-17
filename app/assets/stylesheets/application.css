@@ -41,14 +41,15 @@ ul li:hover {
   background: #ddd;
 }
 
-/* Quando clicado, adiciona uma cor de fundo e risca o texto */
+/* Quando clicado, adiciona uma cor de fundo e risca o texto 
 ul li.checked {
   background: #888888;
   color: #fff;
   text-decoration: line-through;
 }
+*/
 
-/* Adiciona um "check" quando o item é clicado */
+/* Adiciona um "check" quando o item é clicado 
 ul li.checked::before {
   content: '';
   position: absolute;
@@ -62,6 +63,7 @@ ul li.checked::before {
   width: 7px;
 }
 
+*/
 /* Estiliza o botão de fechar */
 .close {
   position: absolute;
@@ -129,7 +131,13 @@ input {
   margin-bottom: 10px;
 }
 
+/* Transição dos itens removidos */
 .fade-out {
   transition: opacity 0.7s ease-out; 
   opacity: 0; 
+}
+/* Removendo propriedads dos links */
+.todo-link {
+  text-decoration: none; 
+  color: inherit;
 }

@@ -23,7 +23,7 @@
       <% if @todos.any? %>
         <% @todos.each do |todo| %>
           <li data-id="<%= todo.id %>" class="<%= 'checked' if todo.completed %>">
-            <%= todo.title %>
+            <%= link_to todo.title, edit_todo_path(todo), class: 'todo-link' %>
             <span class="close" data-id="<%= todo.id %>">×</span>
           </li>
         <% end %>
